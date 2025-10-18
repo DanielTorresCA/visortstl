@@ -52,11 +52,9 @@
                             @method('DELETE')
                             <button type="submit" class="text-red-500 hover:underline" onclick="return confirm('¿Estás seguro de que deseas eliminar esta categoría?')">Eliminar</button>
                         </form>
-                     <a
-                        href="{{ route('stl.view', $stlfile->id) }}"
-                        target="_blank"
-                        class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 mx-1 rounded"
-                        >
+                   <a href="{{ route('stl.view', $stlfile->id) }}"
+                        onclick="return openStlWin(this.href)"
+                        class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded">
                         Ver 3D
                         </a>
                 </tr>
@@ -80,4 +78,21 @@
             }, 3000); // Elimina el alert después de 3 segundos
         }
     });
+
+    function openStlWin(url) {
+    const w = 720, h = 720; // tamaño de la ventana (cuadrada)
+    const left = Math.round((screen.width  - w) / 2);
+    const top  = Math.round((screen.height - h) / 2);
+
+    const features = [
+      `width=${w}`, `height=${h}`,
+      `left=${left}`, `top=${top}`,
+      'resizable=yes', 'scrollbars=no',
+      'noopener', 'noreferrer'
+    ].join(',');
+
+    const win = window.open(url, 'stlViewer', features); // mismo nombre, reutiliza la ventana
+    if (win) win.focus();
+    return false; // evita la navegación del <a>
+  }
 </script>

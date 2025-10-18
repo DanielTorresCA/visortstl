@@ -5,22 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Visor 3D - {{ $stlfile->fileName }}</title>
   @vite(['resources/js/pages/stl-viewer-page.js'])
-  <script src="https://cdn.tailwindcss.com"></script> {{-- opcional para estilos --}}
-</head>
-<body class="bg-gray-900 text-white flex flex-col h-screen">
-  <header class="p-4 bg-gray-800 border-b border-gray-700 flex justify-between items-center">
-    <h1 class="text-lg font-semibold">🔹 {{ $stlfile->fileName }}</h1>
-    <a href="{{ url()->previous() }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
-      ← Volver
-    </a>
-  </header>
-
-  {{-- Contenedor del visor. data-url trae la URL del STL desde el controlador --}}
-  <main id="stl-viewer" data-url="{{ $url }}" class="flex-1"></main>
-
   <style>
-    /* Llenar alto de la ventana menos la cabecera (64px aprox) */
-    #stl-viewer > canvas { width: 100% !important; height: calc(100vh - 64px) !important; display: block; }
+    html, body { height: 100%; margin: 0; background: #111; }
+    /* El contenedor será cuadrado, centrado, y ocupará el menor lado de la ventana */
+    #stl-viewer {
+      position: fixed; inset: 0;
+      margin: auto;
+      width: min(100vw, 100vh);
+      height: min(100vw, 100vh);
+    }
+    /* Forzamos el canvas a llenar el contenedor cuadrado */
+    #stl-viewer > canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+    }
   </style>
+</head>
+<body>
+  <main id="stl-viewer" data-url="{{ $url }}"></main>
+
+  <script type="module">
+    import { initStlViewer } from '/resources/js/lib/stl-viewer.js';
+
+    const el = document.getElementById('stl-viewer');
+    const url = el.dataset.url;
+
+    // Inicializa el visor
+    const viewer = initStlViewer(el, url);
+
+    // Como el contenedor ya es cuadrado y cambia con la ventana,
+    // no necesitas más JS aquí: el módulo ajustará el renderer en resize.
+  </script>
 </body>
 </html>

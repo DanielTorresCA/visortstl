@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\StlFile;
-use Illuminate\Http\Request;
+use App\Models\Stlfile;
 use Illuminate\Support\Facades\Storage;
 
 class StlViewerController extends Controller
 {
     public function show($id)
     {
-        $stlfile = StlFile::findOrFail($id);
+        $stlfile = Stlfile::findOrFail($id);
 
-        // Asegúrate de guardar el path estilo 'stls/modelo1.stl' (en storage/app/public)
-        // y de haber hecho php artisan storage:link
-        $url = Storage::url($stlfile->path);
+        // Build a public URL based on the stored relative path (uploads/stls/file.stl)
+        $url = Storage::disk('public')->url($stlfile->filePath);
 
         return view('stl.viewer', compact('stlfile', 'url'));
     }

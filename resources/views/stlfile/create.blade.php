@@ -1,26 +1,53 @@
-<x-layouts.app :title="__('Crear archivo STL')">
-    <div class="mx-auto w-full max-w-3xl space-y-6 rounded-xl border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-700 dark:bg-neutral-900">
-        <div>
-            <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">
-                Crear archivo STL
-            </h1>
-            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                Completa el formulario para subir un nuevo archivo STL al sistema.
-            </p>
-        </div>
+{{-- resources/views/stlfile/create.blade.php --}}
+<x-layouts.app title="Subir archivo STL">
+  <div class="p-6 border bg-transparent ">
+    <form action="{{ route('stls.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+      @csrf
 
-        <form action="{{ route('stls.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
-            @csrf
-            @include('stlfile._form', ['stlfile' => new \App\Models\Stlfile(['isActive' => true])])
+      <div>
+        <label class="block mb-1">Nombre (opcional, si quieres mostrar algo distinto al original)</label>
+        <input name="displayName" class="w-full max-w-md rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900
+         shadow-sm outline-none transition
+         placeholder:text-neutral-400
+         focus:border-white-500 focus:ring-2 focus:ring-white-500/30
+         dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500" />
+      </div>
 
-            <div class="flex items-center justify-end gap-3">
-                <a href="{{ route('stls.index') }}" class="inline-flex items-center rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-800">
-                    Cancelar
-                </a>
-                <button type="submit" class="inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700">
-                    Guardar
-                </button>
-            </div>
-        </form>
-    </div>
+      <div >
+        <label class="block mb-1">Archivo STL</label>
+          <div role="alert"
+     class="w-full max-w-md rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900
+         shadow-sm outline-none transition
+         placeholder:text-neutral-400
+         focus:border-white-500 focus:ring-2 focus:ring-white-500/30
+         dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500">
+        <input type="file" name="file" accept=".stl" required class="text-sm" />
+        @error('file')
+          <p class="mt-1 inline-flex items-center gap-2 rounded-md bg-red-500/15 px-3 py-1.5 text-sm font-medium text-red-300">{{ $message }}</p>
+        @enderror
+      </div>
+      </div>
+
+      <div>
+        <label class="block mb-1">Categoría (opcional)</label>
+        <select name="category_id" class="w-full max-w-md rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900
+         shadow-sm outline-none transition
+         placeholder:text-neutral-400
+         focus:border-white-500 focus:ring-2 focus:ring-white-500/30
+         dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500">
+          <option value="">Sin categoría</option>
+          @foreach($categories as $cat)
+            <option value="{{ $cat->id }}">{{ $cat->categoryName }}</option>
+          @endforeach
+        </select>
+      </div>
+
+      <label class="inline-flex items-center gap-2">
+        <input type="checkbox" name="isActive" value="1" checked class="h-4 w-4" />
+        <span>Activo</span>
+      </label>
+
+      <button class="mx-3 px-4 py-2 bg-green-600 hover:bg-green-700 rounded-md text-white">Guardar</button>
+    </form>
+  </div>
 </x-layouts.app>

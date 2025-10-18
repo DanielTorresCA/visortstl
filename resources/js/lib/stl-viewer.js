@@ -30,12 +30,11 @@ export function initStlViewer(container, url) {
 
   // Resize
   const resize = () => {
-    const w = el.clientWidth || 600;
-    const h = el.clientHeight || 400;
-    renderer.setSize(w, h, false);
-    camera.aspect = w / h;
-    camera.updateProjectionMatrix();
-  };
+  const w = el.clientWidth, h = el.clientHeight; // ya son iguales por CSS
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h;    // será 1
+  camera.updateProjectionMatrix();
+};
   resize();
   window.addEventListener('resize', resize);
 
