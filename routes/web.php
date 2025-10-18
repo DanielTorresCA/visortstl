@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\StlfileController;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\StlViewerController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,7 +23,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/password', Password::class)->name('settings.password');
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
 });
-
+Route::get('/stl/view/{id}', [StlViewerController::class, 'show'])->name('stl.view');
 Route::get('categorias', [CategoryController::class, 'index'])->name('category');
+Route::resource('categories', CategoryController::class);
+Route::resource('stls', StlfileController::class);
 
 require __DIR__.'/auth.php';
