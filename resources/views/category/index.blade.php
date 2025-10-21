@@ -21,7 +21,7 @@
             @else
             <div class="container">
             <h2>Categorías</h2>
-          <table class="min-w-full border border-gray-700 rounded-lg overflow-hidden">
+          <table class="js-data-table min-w-full border border-gray-700 rounded-lg overflow-hidden">
         <thead class="bg-gray-800 text-gray-300 uppercase text-sm tracking-wider">
             <tr>
                 <th class="px-6 py-3 text-left">ID</th>
@@ -59,13 +59,3 @@
             </div> 
     </div>
 </x-layouts.app>
-
-<script>
-    $(document).ready(function () {
-        $('#usersTable').DataTable({
-            language: {
-                url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json'
-            }
-        });
-    });
-</script>

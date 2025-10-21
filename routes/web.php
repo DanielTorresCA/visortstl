@@ -6,6 +6,7 @@ use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\StlViewerController;
+use App\Http\Controllers\ProyectController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -27,5 +28,6 @@ Route::get('/stl/view/{id}', [StlViewerController::class, 'show'])->name('stl.vi
 Route::get('categorias', [CategoryController::class, 'index'])->name('category');
 Route::resource('categories', CategoryController::class);
 Route::resource('stls', StlfileController::class);
+Route::resource('proyects', ProyectController::class);
 
 require __DIR__.'/auth.php';

@@ -16,6 +16,7 @@
                     <flux:navlist.item style=" margin-bottom: 10px;" icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
                     <flux:navlist.item icon="book-open-text" :href="route('category')" :current="request()->routeIs('category')" wire:navigate>{{ __('Categorias') }}</flux:navlist.item>
                     <flux:navlist.item icon="folder-git-2" :href="route('stls.index')" :current="request()->routeIs('stls')" wire:navigate>{{ __('Stls') }}</flux:navlist.item>
+                     <flux:navlist.item icon="layout-grid" :href="route('proyects.index')" :current="request()->routeIs('')" wire:navigate>{{ __('Proyectos') }}</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 

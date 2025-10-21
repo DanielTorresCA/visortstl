@@ -24,18 +24,5 @@
 </head>
 <body>
   <main id="stl-viewer" data-url="{{ $url }}"></main>
-
-  <script type="module">
-    import { initStlViewer } from '/resources/js/lib/stl-viewer.js';
-
-    const el = document.getElementById('stl-viewer');
-    const url = el.dataset.url;
-
-    // Inicializa el visor
-    const viewer = initStlViewer(el, url);
-
-    // Como el contenedor ya es cuadrado y cambia con la ventana,
-    // no necesitas más JS aquí: el módulo ajustará el renderer en resize.
-  </script>
 </body>
 </html>

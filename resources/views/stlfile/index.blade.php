@@ -1,3 +1,4 @@
+
 <x-layouts.app :title="__('Dashboard stl')">
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
         <div class="grid auto-rows-min gap-4 md:grid-cols-3">
@@ -20,7 +21,7 @@
             @else
             <div class="container">
             <h2>Lista de Archivos</h2>
-          <table class="min-w-full border border-gray-700 rounded-lg overflow-hidden">
+          <table class="js-data-table min-w-full border border-gray-700 rounded-lg overflow-hidden">
         <thead class="bg-gray-800 text-gray-300 uppercase text-sm tracking-wider">
             <tr>
                 <th class="px-6 py-3 text-left">ID</th>
@@ -35,9 +36,7 @@
                 <tr class="hover:bg-gray-800 transition-colors duration-150">
                     <td class="px-6 py-3">{{ $stlfile->id }}</td>
                     <td class="px-6 py-3">{{ $stlfile->fileName }}</td>
-                    <td class="px-6 py-3">
-                        {{ $stlfile->category ? $stlfile->category->name : 'Sin categoría' }}
-                    </td>
+                    <td class="px-6 py-3">{{ $stlfile->category ? $stlfile->category->name : 'Sin categoría' }}</td>
                     <td class="px-6 py-3">
                         @if($stlfile->isActive)
                             <span class="bg-green-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Sí</span>
@@ -58,17 +57,14 @@
                         Ver 3D
                         </a>
                 </tr>
-            @endforeach
-               
+            @endforeach  
         </tbody>
     </table>
             </div>
             @endif
-
             </div> 
     </div>
 </x-layouts.app>
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const alert = document.getElementById('alert');
