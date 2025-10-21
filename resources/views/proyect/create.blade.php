@@ -5,7 +5,7 @@
       @csrf
        <div>
         <label class="block mb-1">Nombre del Proyecto</label>
-        <input name="displayName" class="w-full max-w-md rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900
+        <input name="name" class="w-full max-w-md rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900
          shadow-sm outline-none transition
          placeholder:text-neutral-400
          focus:border-white-500 focus:ring-2 focus:ring-white-500/30
@@ -41,7 +41,7 @@
         </div>
         <div>
             <label class="block mb-1">Fecha de entrega</label>
-        <input type="date" id="fecha" name="fecha" class="w-full max-w-md rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900
+        <input type="date" id="fecha" name="deadline" class="w-full max-w-md rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900
              shadow-sm outline-none transition
              placeholder:text-neutral-400
              focus:border-white-500 focus:ring-2 focus:ring-white-500/30

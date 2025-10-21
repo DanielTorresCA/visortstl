@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Proyect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class ProyectController extends Controller
@@ -49,7 +50,7 @@ class ProyectController extends Controller
             'customer' => $request->customer,
             'price' => $request->price,
         ]);
-
+        return redirect()->route('proyects.index')->with('success', 'Proyecto creado exitosamente.');
     }
 
     /**
@@ -57,7 +58,7 @@ class ProyectController extends Controller
      */
     public function show(Proyect $proyect)
     {
-        //
+        
     }
 
     /**
@@ -79,8 +80,10 @@ class ProyectController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Proyect $proyect)
+    public function destroy(string $id)
     {
-        //
+        $proyect = Proyect::findOrFail($id);
+        $proyect->delete();
+        return redirect()->route('proyects.index')->with('success', 'Proyecto eliminado exitosamente.');
     }
 }

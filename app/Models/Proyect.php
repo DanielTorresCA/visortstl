@@ -10,10 +10,12 @@ class Proyect extends Model
     protected $table='proyects';
     protected $fillable = [
         'name',
+        'customer',
         'description',
         'status',
         'deadline',
         'completed_at',
+        'price',
         'user_id',
     ];
     public function user()
