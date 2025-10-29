@@ -34,7 +34,7 @@
              placeholder:text-neutral-400
              focus:border-white-500 focus:ring-2 focus:ring-white-500/30
              dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500">
-                <option value="activo">Pendiente</option>
+                <option value="pendiente">Pendiente</option>
                 <option value="completado">Completado</option>
                 <option value="cancelado">Cancelado</option>
             </select>
@@ -57,7 +57,9 @@
              focus:border-white-500 focus:ring-2 focus:ring-white-500/30
              dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500" />    
         </div>      
-      <button class="mx-3 px-4 py-2 bg-green-600 hover:bg-green-700 rounded-md text-white">Guardar</button>
+      <button type="submit" class="mx-3 px-4 py-2 bg-green-600 hover:bg-green-700 rounded-md text-white">Guardar</button>   
+        <button type="button" onclick="window.location='{{ route('proyects.index') }}'" class="mx-3 my-2 px-4 py-2 bg-red-600 hover:bg-red-700 rounded-md text-white">Cancelar</button>
     </form>
   </div>
+ 
 </x-layouts.app>

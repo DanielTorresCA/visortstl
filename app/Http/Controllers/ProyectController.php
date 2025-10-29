@@ -14,6 +14,7 @@ class ProyectController extends Controller
     public function index()
     {
         $proyects = Proyect::all();
+        $proyects->load('user');
         return view('proyect.index', compact('proyects'));
     }
 
@@ -86,4 +87,22 @@ class ProyectController extends Controller
         $proyect->delete();
         return redirect()->route('proyects.index')->with('success', 'Proyecto eliminado exitosamente.');
     }
+
+    public function entregarProyect(string $id)
+    {
+        $proyect = Proyect::findOrFail($id);
+        $proyect->status = 'completado';
+        $proyect->completed_at = now();
+        $proyect->save();
+        return redirect()->route('proyects.index')->with('success', 'Proyecto marcado como entregado.');
+    }
+
+    public function cancelarProyect(string $id)
+    {
+        $proyect = Proyect::findOrFail($id);
+        $proyect->status = 'cancelado';
+        $proyect->save();
+        return redirect()->route('proyects.index')->with('success', 'Proyecto marcado como cancelado.');
+    }
+    
 }

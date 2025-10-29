@@ -29,5 +29,6 @@ Route::get('categorias', [CategoryController::class, 'index'])->name('category')
 Route::resource('categories', CategoryController::class);
 Route::resource('stls', StlfileController::class);
 Route::resource('proyects', ProyectController::class);
-
+Route::post('proyects/{id}/complete', [ProyectController::class, 'entregarProyect'])->name('proyects.complete');
+Route::post('proyects/{id}/cancel', [ProyectController::class, 'cancelarProyect'])->name('proyects.cancel');
 require __DIR__.'/auth.php';

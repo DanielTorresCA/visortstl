@@ -23,6 +23,7 @@ const initDataTables = (root = document) => {
     });
 };
 
+
 // Primer render
 document.addEventListener('DOMContentLoaded', () => initDataTables());
 
