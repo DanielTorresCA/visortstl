@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->boolean('isActive')->default(true);
             $table->timestamps();
-             $table->foreign('category_id')->references('id')->on('category');
+             $table->foreign('category_id')->references('id')->on('categories');
         });
     }
     public function down(): void

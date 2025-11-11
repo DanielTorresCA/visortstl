@@ -51,11 +51,12 @@
                             @method('DELETE')
                             <button type="submit" class="text-red-500 hover:underline" onclick="return confirm('¿Estás seguro de que deseas eliminar esta categoría?')">Eliminar</button>
                         </form>
-                   <a href="{{ route('stl.view', $stlfile->id) }}"
-                        onclick="return openStlWin(this.href)"
-                        class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded">
-                        Ver 3D
-                        </a>
+                  <a href="{{ route('stl.view', $stlfile->id) }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded">
+                            Ver 3D
+                            </a>
                 </tr>
             @endforeach  
         </tbody>

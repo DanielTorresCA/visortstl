@@ -54,9 +54,6 @@ class ProyectController extends Controller
         return redirect()->route('proyects.index')->with('success', 'Proyecto creado exitosamente.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Proyect $proyect)
     {
         
@@ -104,5 +101,7 @@ class ProyectController extends Controller
         $proyect->save();
         return redirect()->route('proyects.index')->with('success', 'Proyecto marcado como cancelado.');
     }
+
+    
     
 }
