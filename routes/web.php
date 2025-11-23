@@ -7,6 +7,7 @@ use App\Livewire\Settings\Profile;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\StlViewerController;
 use App\Http\Controllers\ProyectController;
+use App\Http\Controllers\FilamentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -31,4 +32,5 @@ Route::resource('stls', StlfileController::class);
 Route::resource('proyects', ProyectController::class);
 Route::post('proyects/{id}/complete', [ProyectController::class, 'entregarProyect'])->name('proyects.complete');
 Route::post('proyects/{id}/cancel', [ProyectController::class, 'cancelarProyect'])->name('proyects.cancel');
+Route::resource('filaments', FilamentController::class);
 require __DIR__.'/auth.php';
