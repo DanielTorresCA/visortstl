@@ -30,16 +30,13 @@
     <option value="PETG">PETG</option>
     <option value="ABS">ABS</option>
     <option value="ASA">ASA</option>
-    
     <option value="TPU">TPU (Flexible)</option>
     <option value="TPE">TPE</option>
-    
     <option value="Nylon">Nylon (PA)</option>
     <option value="PC">Policarbonato (PC)</option>
     <option value="HIPS">HIPS</option>
     <option value="PVA">PVA (Soluble)</option>
     <option value="PP">Polipropileno (PP)</option>
-    
     <option value="Carbon Fiber">Fibra de Carbono</option>
     <option value="Wood">Madera / Wood</option>
     <option value="Metal Fill">Metal Fill</option>
