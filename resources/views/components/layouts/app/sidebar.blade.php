@@ -17,7 +17,15 @@
                     <flux:navlist.item icon="book-open-text" :href="route('category')" :current="request()->routeIs('category')" wire:navigate>{{ __('Categorias') }}</flux:navlist.item>
                     <flux:navlist.item icon="folder-git-2" :href="route('stls.index')" :current="request()->routeIs('stls')" wire:navigate>{{ __('Stls') }}</flux:navlist.item>
                     <flux:navlist.item icon="layout-grid" :href="route('proyects.index')" :current="request()->routeIs('')" wire:navigate>{{ __('Proyectos') }}</flux:navlist.item>
-                    <flux:navlist.item icon="layout-grid" :href="route('filaments.index')" :current="request()->routeIs('')" wire:navigate>{{ __('Materiales') }}</flux:navlist.item>
+                    <flux:navlist.group icon="layout-grid" expandable heading="Materiales"> 
+                    <flux:navlist.item href="{{ route('filaments.index') }}">
+                        Filamentos
+                    </flux:navlist.item>             
+                    <flux:navlist.item href="{{ route('printers.index') }}">
+                        Impresoras
+                    </flux:navlist.item>
+                    
+                </flux:navlist.group>
                 </flux:navlist.group>
             </flux:navlist>
 
