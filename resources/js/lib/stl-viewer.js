@@ -30,17 +30,20 @@ export function initStlViewer(container, url) {
 
   // Resize
   const resize = () => {
-  const w = el.clientWidth, h = el.clientHeight; // ya son iguales por CSS
-  renderer.setSize(w, h, false);
-  camera.aspect = w / h;    // será 1
-  camera.updateProjectionMatrix();
-};
+    const w = el.clientWidth, h = el.clientHeight; // ya son iguales por CSS
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;    // será 1
+    camera.updateProjectionMatrix();
+  };
   resize();
   window.addEventListener('resize', resize);
 
   // Carga STL
   const loader = new STLLoader();
   loader.load(url, (geometry) => {
+    const loaderEl = document.getElementById('loader');
+    if (loaderEl) loaderEl.style.display = 'none';
+
     geometry.computeVertexNormals();
 
     const mesh = new THREE.Mesh(
@@ -63,6 +66,11 @@ export function initStlViewer(container, url) {
   }, undefined, (err) => {
     // eslint-disable-next-line no-console
     console.error('Error cargando STL:', err);
+    const loaderEl = document.getElementById('loader');
+    if (loaderEl) {
+      loaderEl.innerText = 'Error cargando STL (' + url + '): ' + (err.message || 'Error desconocido');
+      loaderEl.style.color = '#ff6666';
+    }
   });
 
   function fitCameraToObject(camera, object, controls, offset = 1.25) {
@@ -74,7 +82,7 @@ export function initStlViewer(container, url) {
 
     camera.position.set(camZ, camZ * 0.75, camZ);
     camera.near = maxDim / 100;
-    camera.far  = maxDim * 100;
+    camera.far = maxDim * 100;
     camera.updateProjectionMatrix();
 
     controls.target.set(0, 0, 0);

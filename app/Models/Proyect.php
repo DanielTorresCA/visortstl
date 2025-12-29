@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+
 class Proyect extends Model
 {
     use HasFactory;
@@ -20,7 +21,11 @@ class Proyect extends Model
         'completed_at',
         'price',
         'user_id',
+        'printTime',
+        'materialUsed',
+        'isFail'
     ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

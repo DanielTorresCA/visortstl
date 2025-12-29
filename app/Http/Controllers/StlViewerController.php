@@ -12,7 +12,8 @@ class StlViewerController extends Controller
         $stlfile = Stlfile::findOrFail($id);
 
         // Build a public URL based on the stored relative path (uploads/stls/file.stl)
-        $url = Storage::disk('public')->url($stlfile->filePath);
+        // $url = Storage::disk('public')->url($stlfile->filePath);
+        $url = '/storage/' . ltrim($stlfile->filePath, '/');
 
         return view('stl.viewer', compact('stlfile', 'url'));
     }

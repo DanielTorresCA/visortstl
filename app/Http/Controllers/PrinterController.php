@@ -13,9 +13,9 @@ class PrinterController extends Controller
     public function index()
     {
         $printers = Printer::all();
-      return view('materials.printers.index', [
-                'printers' => $printers
-            ]);
+        return view('materials.printers.index', [
+            'printers' => $printers
+        ]);
     }
 
     /**
@@ -23,20 +23,16 @@ class PrinterController extends Controller
      */
     public function create()
     {
-        //
+        return view('materials.printers.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $printer = Printer::create($request->all());
+        return redirect()->route('printers.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(Printer $printer)
     {
         //
@@ -63,6 +59,7 @@ class PrinterController extends Controller
      */
     public function destroy(Printer $printer)
     {
-        //
+        $printer->delete();
+        return redirect()->route('printers.index');
     }
 }

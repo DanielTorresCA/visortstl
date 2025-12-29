@@ -13,19 +13,21 @@
          dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500" />
       </div>
 
-      <div >
+      <div>
         <label class="block mb-1">Archivo STL</label>
-          <div role="alert"
-     class="w-full max-w-md rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900
+        <div role="alert" class="w-full max-w-md rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900
          shadow-sm outline-none transition
          placeholder:text-neutral-400
          focus:border-white-500 focus:ring-2 focus:ring-white-500/30
          dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder-neutral-500">
-        <input type="file" name="file" accept=".stl" required class="text-sm" />
-        @error('file')
-          <p class="mt-1 inline-flex items-center gap-2 rounded-md bg-red-500/15 px-3 py-1.5 text-sm font-medium text-red-300">{{ $message }}</p>
-        @enderror
-      </div>
+          <input type="file" name="file" accept=".stl" required class="text-sm" />
+          @error('file')
+            <p
+              class="mt-1 inline-flex items-center gap-2 rounded-md bg-red-500/15 px-3 py-1.5 text-sm font-medium text-red-300">
+              {{ $message }}
+            </p>
+          @enderror
+        </div>
       </div>
 
       <div>

@@ -11,7 +11,7 @@ class Printer extends Model
     use HasFactory;
     protected $table = 'printers';
     protected $fillable = [
-        'name',
+        'brand',
         'model',
     ];
 

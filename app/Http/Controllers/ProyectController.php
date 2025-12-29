@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Proyect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use App\Models\Printer;
+use App\Models\Filament;
+
 
 class ProyectController extends Controller
 {
@@ -18,31 +21,32 @@ class ProyectController extends Controller
         return view('proyect.index', compact('proyects'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        return view('proyect.create');
+        $printers = Printer::all();
+        $filaments = Filament::all();
+        return view('proyect.create', compact('printers', 'filaments'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        
-           $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
-            'customer'=>'nullable|string|max:255',
+            'customer' => 'string|max:255',
             'description' => 'nullable|string',
-            'status' => 'required|string',
-            'deadline' => 'nullable|date',
+            'status' => 'in:pendiente,completado,cancelado|required|string',
+            'deadline' => 'date',
             'completed_at' => 'nullable|date',
-            'price'=>'nullable|numeric',
+            'price' => 'numeric',
+            'printTime' => 'numeric',
+            'materialUsed' => 'numeric',
+            'isFail' => 'nullable|boolean',
+            'printer_id' => 'exists:printers,id',
+            'filament_id' => 'exists:filaments,id',
+
         ]);
         $iduser = auth()->id();
-        Proyect::create([
+        $proyect = Proyect::create([
             'name' => $request->name,
             'description' => $request->description,
             'status' => $request->status,
@@ -50,34 +54,25 @@ class ProyectController extends Controller
             'user_id' => $iduser,
             'customer' => $request->customer,
             'price' => $request->price,
+            'printTime' => $request->printTime,
+            'materialUsed' => $request->materialUsed,
         ]);
         return redirect()->route('proyects.index')->with('success', 'Proyecto creado exitosamente.');
     }
 
     public function show(Proyect $proyect)
     {
-        
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    }
     public function edit(Proyect $proyect)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Proyect $proyect)
     {
         //
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         $proyect = Proyect::findOrFail($id);
@@ -93,15 +88,13 @@ class ProyectController extends Controller
         $proyect->save();
         return redirect()->route('proyects.index')->with('success', 'Proyecto marcado como entregado.');
     }
-
     public function cancelarProyect(string $id)
     {
         $proyect = Proyect::findOrFail($id);
         $proyect->status = 'cancelado';
         $proyect->save();
         return redirect()->route('proyects.index')->with('success', 'Proyecto marcado como cancelado.');
+
     }
 
-    
-    
 }
